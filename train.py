@@ -19,7 +19,7 @@ except ImportError:
     wandb = None
 
 
-from dataset import MultiResolutionDataset
+from dataset import MultiResolutionDataset, MultiResolutionFolderDataset
 from distributed import (
     get_rank,
     synchronize,
@@ -517,7 +517,7 @@ if __name__ == "__main__":
         ]
     )
 
-    dataset = MultiResolutionDataset(args.path, transform, args.size)
+    dataset = MultiResolutionFolderDataset(args.path, transform, args.size)
     loader = data.DataLoader(
         dataset,
         batch_size=args.batch,

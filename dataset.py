@@ -3,7 +3,7 @@ from io import BytesIO
 import lmdb
 from PIL import Image
 from torch.utils.data import Dataset
-
+import os
 
 class MultiResolutionDataset(Dataset):
     def __init__(self, path, transform, resolution=256):
@@ -36,5 +36,27 @@ class MultiResolutionDataset(Dataset):
         buffer = BytesIO(img_bytes)
         img = Image.open(buffer)
         img = self.transform(img)
+
+        return img
+
+
+
+
+class MultiResolutionFolderDataset(Dataset):
+    def __init__(self, root_path, transform, resolution=256):
+        self.root_path = root_path
+        self.transform = transform
+        self.image_files = [f for f in os.listdir(root_path) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
+
+    def __len__(self):
+        return len(self.image_files)
+
+    def __getitem__(self, index):
+        img_name = self.image_files[index]
+        img_path = os.path.join(self.root_path, img_name)
+        img = Image.open(img_path).convert('RGB')
+
+        if self.transform:
+            img = self.transform(img)
 
         return img

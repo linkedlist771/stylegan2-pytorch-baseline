@@ -33,11 +33,15 @@ def resize_multiple(
 
 def resize_worker(img_file, sizes, resample):
     i, file = img_file
-    img = Image.open(file)
-    img = img.convert("RGB")
+    try:
+        img = Image.open(file)
+        img = img.convert("RGB")
+    except Exception as e:
+        print(f"Error processing {file}: {e}")
+        return i, [None] * len(sizes)  # 返回空的图像数据
     out = resize_multiple(img, sizes=sizes, resample=resample)
-
     return i, out
+
 
 
 def prepare(
