@@ -11,7 +11,7 @@ root_path/
 ```
 
 ```bash
-python preprocess.py --out ./lmdb_deposition_dataset --size 512  --n_worker 8 --resample lanczos ./deposition_dataset
+python prepare_data.py --out ./lmdb_deposition_dataset --size 512  --n_worker 8 --resample lanczos  /mnt/c/Users/23174/Desktop/GitHub\ Project/data-efficient-gans-baseline/data/deposition_data_processed_stylegan/ 
 
 ```
 
