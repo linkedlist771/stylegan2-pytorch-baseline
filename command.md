@@ -28,7 +28,8 @@ CUDA_VISIBLE_DEVICES=2 torchrun --nproc_per_node=1 --master_port=3001 train.py -
 
 - nohup version
 
+> local_rank represents the device id.
 ```bash
-CUDA_VISIBLE_DEVICES=2 && nohup torchrun --nproc_per_node=1 --master_port=3001 train.py --batch 32 --size 512  deposition_data_processed_stylegan/
+CUDA_VISIBLE_DEVICES=2 && nohup torchrun --nproc_per_node=1 --master_port=3001 train.py --batch 32 --size 512 --local_rank 2  deposition_data_processed_stylegan/
  > $(date +%m%d)"stylegan2_training".log 2>&1 &
 ```
