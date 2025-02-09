@@ -6,6 +6,7 @@ services:
     network_mode: "host"
     volumes:
       - ./:/workspace
+      - /home/gpu02/dingli:/home/gpu02/dingli
       - /dev/shm:/dev/shm  # 添加这行来增加共享内存
     deploy:
       resources:
